@@ -1,10 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import TranslatorPage from "./pages/TranslatorPage";
+import RandomPage from "./pages/RandomPage";
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-slate-100">
-      <h1 className="text-5xl font-bold text-blue-600">
-        Tailwind is Working 🚀
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/translator" element={<TranslatorPage />} />
+        <Route path="/random" element={<RandomPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
