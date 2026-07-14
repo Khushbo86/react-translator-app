@@ -48,103 +48,127 @@ function TranslatorPage() {
   };
 
   return (
-    <div className="min-h-[85vh] bg-gradient-to-br from-blue-100 via-white to-purple-100 flex justify-center items-center px-4 py-10">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl">
+    <div className="min-h-screen bg-slate-50 py-16 px-6">
+      <div className="max-w-6xl mx-auto">
 
-        <h1 className="text-4xl font-bold text-center text-blue-600">
-          🌍 Language Translator
-        </h1>
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h1 className="text-5xl font-bold text-slate-900">
+            Text Translator
+          </h1>
 
-        <p className="text-center text-gray-500 mt-2 mb-8">
-          Translate English text into multiple languages instantly.
-        </p>
-
-        <label className="font-semibold text-gray-700">
-          Enter English Text
-        </label>
-
-        <textarea
-          rows="6"
-          className="w-full border border-gray-300 rounded-lg p-4 mt-2 mb-6 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Example: Hello, how are you today?"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-
-        <label className="font-semibold text-gray-700">
-          Translate To
-        </label>
-
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="hi">🇮🇳 Hindi</option>
-          <option value="es">🇪🇸 Spanish</option>
-          <option value="fr">🇫🇷 French</option>
-          <option value="de">🇩🇪 German</option>
-          <option value="it">🇮🇹 Italian</option>
-          <option value="pt">🇵🇹 Portuguese</option>
-          <option value="ru">🇷🇺 Russian</option>
-          <option value="ja">🇯🇵 Japanese</option>
-          <option value="ko">🇰🇷 Korean</option>
-          <option value="zh-CN">🇨🇳 Chinese</option>
-          <option value="ar">🇸🇦 Arabic</option>
-        </select>
-
-        <button
-          onClick={handleTranslate}
-          disabled={loading}
-          className={`w-full py-3 rounded-lg text-white font-semibold transition ${
-            loading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
-          }`}
-        >
-          {loading ? "Translating..." : "Translate"}
-        </button>
-
-        {loading && <LoadingSpinner />}
-
-        {error && (
-          <p className="text-red-500 mt-4 text-center font-medium">
-            {error}
+          <p className="mt-4 text-slate-500 text-lg">
+            Translate English text into multiple languages instantly.
           </p>
-        )}
+        </div>
 
-        {!translatedText && !loading && !error && (
-          <div className="mt-8 border border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-400">
-            No translation yet.
-          </div>
-        )}
+        {/* Main Layout */}
+        <div className="grid lg:grid-cols-2 gap-8">
 
-        {translatedText && (
-          <div className="mt-8">
+          {/* Input Card */}
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
 
-            <h2 className="text-xl font-bold mb-3 text-gray-700">
-              Translated Text
+            <h2 className="text-xl font-semibold text-slate-800 mb-6">
+              Source Text
             </h2>
 
-            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 min-h-[120px] break-words text-gray-700">
-              {translatedText}
+            <textarea
+              rows="8"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Enter your English text..."
+              className="w-full rounded-xl border border-slate-300 p-4 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+
+            <div className="mt-6">
+              <label className="block mb-2 font-medium text-slate-700">
+                Target Language
+              </label>
+
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="hi">Hindi</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="pt">Portuguese</option>
+                <option value="ru">Russian</option>
+                <option value="ja">Japanese</option>
+                <option value="ko">Korean</option>
+                <option value="zh-CN">Chinese</option>
+                <option value="ar">Arabic</option>
+              </select>
             </div>
 
             <button
-              onClick={copyToClipboard}
-              className="mt-5 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition"
+              onClick={handleTranslate}
+              disabled={loading}
+              className={`w-full mt-8 py-3 rounded-xl font-medium transition ${
+                loading
+                  ? "bg-slate-300 cursor-not-allowed"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700"
+              }`}
             >
-              📋 Copy Translation
+              {loading ? "Translating..." : "Translate"}
             </button>
 
+            {loading && <LoadingSpinner />}
+
+            {error && (
+              <p className="mt-4 text-red-500 text-sm">
+                {error}
+              </p>
+            )}
+          </div>
+
+          {/* Output Card */}
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
+
+            <div className="flex justify-between items-center mb-6">
+
+              <h2 className="text-xl font-semibold text-slate-800">
+                Translation
+              </h2>
+
+              {translatedText && (
+                <button
+                  onClick={copyToClipboard}
+                  className="text-indigo-600 hover:text-indigo-700 font-medium"
+                >
+                  Copy
+                </button>
+              )}
+
+            </div>
+
+            <div className="min-h-[300px] rounded-xl border border-slate-200 bg-slate-50 p-5">
+
+              {translatedText ? (
+                <p className="text-slate-700 whitespace-pre-wrap leading-7">
+                  {translatedText}
+                </p>
+              ) : (
+                <div className="flex items-center justify-center h-full text-slate-400">
+                  Your translated text will appear here.
+                </div>
+              )}
+
+            </div>
+
             {copied && (
-              <p className="text-green-600 mt-3 font-semibold animate-pulse">
-                ✅ Copied Successfully!
+              <p className="mt-4 text-green-600 font-medium">
+                Copied successfully!
               </p>
             )}
 
           </div>
-        )}
+
+        </div>
+
       </div>
     </div>
   );
