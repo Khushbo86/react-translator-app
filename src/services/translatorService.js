@@ -5,10 +5,7 @@ const API_URL = `${import.meta.env.VITE_API_URL}/translator/text`;
 export const translateText = async (text, targetLanguage) => {
   try {
 
-    console.log("API URL:", API_URL);
-    console.log("API HOST:", import.meta.env.VITE_RAPID_API_HOST);
-    console.log("API KEY:", import.meta.env.VITE_RAPID_API_KEY);
-
+    
     const response = await axios.post(
       API_URL,
       {
