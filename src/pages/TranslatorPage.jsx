@@ -62,17 +62,22 @@ function TranslatorPage() {
         </label>
 
         <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="w-full border rounded-lg p-3 mt-2 mb-6"
-        >
-          <option value="hi">Hindi</option>
-          <option value="fr">French</option>
-          <option value="es">Spanish</option>
-          <option value="de">German</option>
-          <option value="ja">Japanese</option>
-          <option value="ko">Korean</option>
-        </select>
+  value={language}
+  onChange={(e) => setLanguage(e.target.value)}
+  className="w-full border rounded-lg p-3 mt-2 mb-6"
+>
+  <option value="hi">Hindi</option>
+  <option value="es">Spanish</option>
+  <option value="fr">French</option>
+  <option value="de">German</option>
+  <option value="it">Italian</option>
+  <option value="pt">Portuguese</option>
+  <option value="ru">Russian</option>
+  <option value="ja">Japanese</option>
+  <option value="ko">Korean</option>
+  <option value="zh-CN">Chinese</option>
+  <option value="ar">Arabic</option>
+</select>
 
         <button
           onClick={handleTranslate}
