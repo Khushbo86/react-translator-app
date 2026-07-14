@@ -19,6 +19,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/translator" element={<TranslatorPage />} />
             <Route path="/random" element={<RandomPage />} />
+            
           </Routes>
         </main>
 
